@@ -1,0 +1,13 @@
+p {
+  padding-top: 30px;
+  font-size: 30px;
+}
+
+.align-center {
+  position: relative;
+  top: 10%;
+}
+
+.input-width {
+  width: 80%;
+}
