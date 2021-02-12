@@ -10,9 +10,9 @@ function Home() {
   return (
     <div>
       {showTimer ? (
-        <p className="counter-center">
+        <div className="counter-center">
           <Countdown initSec={3} callback={() => history.push("/main")} />
-        </p>
+        </div>
       ) : (
         <button
           onClick={() => setShowTimer(true)}

@@ -10,8 +10,8 @@ function Result() {
   const [userName, setUserName] = useState(null);
   const [time, setTime] = useState(0);
   useEffect(() => {
-    Channel.subscribe((isCompleted) => {
-      if (isCompleted) {
+    Channel.subscribe(({ complete }) => {
+      if (complete) {
         setAttrValue();
       }
     });
@@ -24,8 +24,7 @@ function Result() {
   const setAttrValue = () => {
     store.getItem(GAME_ID_KEY, (err, value) => {
       const { winner } = value;
-      console.log(winner);
-      if (winner) {
+      if (winner.time) {
         setUserName(winner.userName);
         setTime(winner.time);
       }

@@ -17,7 +17,6 @@ function Main() {
   const [start, setStart] = useState(new Date().getTime());
 
   const history = useHistory();
-  let isWinnerFound = false;
   useEffect(() => {
     // Get type text
     getText();
@@ -99,21 +98,17 @@ function Main() {
       // Checking if the participants has completed the challange
       if (userTotal === countCompleteUser) {
         // set winner
-        let maxTime = 0;
+        let minTime = 1000 * 60 * 60 * 24 * 7;
         let user = "";
         participants.forEach(({ time, userName }) => {
-          if (time > maxTime) {
-            maxTime = time;
+          if (time < minTime) {
+            minTime = time;
             user = userName;
           }
         });
-        console.log({
-          userName: user,
-          time: maxTime,
-        });
         data.winner = {
           userName: user,
-          time: maxTime,
+          time: minTime,
         };
         store.setItem(GAME_ID_KEY, data);
         Channel.publish({ complete: true });
